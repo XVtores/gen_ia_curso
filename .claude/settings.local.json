@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__desktop-commander__list_directory",
+      "mcp__desktop-commander__write_file",
+      "mcp__desktop-commander__start_process",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__desktop-commander__read_file"
+    ]
+  }
+}
