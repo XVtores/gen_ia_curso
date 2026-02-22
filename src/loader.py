@@ -21,6 +21,18 @@ def load_data(path: Path) -> pd.DataFrame:
 
     df = df.rename(columns=COLUMN_RENAME)
 
+    if "INDUSTRIA" not in df.columns:
+        if "CIIU_NIVEL_1" in df.columns:
+            logger.warning(
+                "Column 'INDUSTRIA' not found; falling back to 'CIIU NIVEL 1'."
+            )
+            df["INDUSTRIA"] = df["CIIU_NIVEL_1"]
+        else:
+            raise ValueError(
+                "Required column missing: 'INDUSTRIA' and fallback "
+                "'CIIU NIVEL 1' are both absent from the file."
+            )
+
     for col in REQUIRED_COLUMNS:
         if col not in df.columns:
             raise ValueError(f"Required column missing after rename: '{col}'")
